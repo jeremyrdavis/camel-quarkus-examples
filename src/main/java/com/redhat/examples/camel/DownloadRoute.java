@@ -9,9 +9,9 @@ public class DownloadRoute extends RouteBuilder {
 
     @Override
     public void configure() {
-        from("ftp://ftpuser@localhost:21/downloads?password=ftppass&passiveMode=true&delete=true")
+        from("ftp://{{ftp.user}}@{{ftp.host}}/downloads?password=ftppass&passiveMode=true&delete=true")
                 .log(LoggingLevel.INFO, "downloading file ${file:name}")
-                .to("file:///Users/jeremyrdavis/Desktop/downloads/?fileName=copy-of-${file:name}");
+                .to("file:///{{ftp.local.downloads}}/?fileName=copy-of-${file:name}");
 
     }
 }
